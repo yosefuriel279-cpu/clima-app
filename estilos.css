@@ -1,0 +1,422 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background 0.5s ease;
+}
+
+body.clima-soleado {
+    background: linear-gradient(135deg, #f12711, #f5af19);
+}
+
+body.clima-nublado {
+    background: linear-gradient(135deg, #757F9A, #D7DDE8);
+    color: #1e3c72;
+}
+
+body.clima-lluvioso {
+    background: linear-gradient(135deg, #1e3c72, #2a5298, #4b6cb7);
+}
+
+body.clima-nieve {
+    background: linear-gradient(135deg, #83a4d4, #b6fbff);
+    color: #1e3c72;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.banner {
+    max-width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+}
+
+.buscador {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+#inputCiudad {
+    padding: 15px 25px;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 1rem;
+    width: 300px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#inputCiudad::placeholder {
+    color: #cccccc;
+}
+
+#inputCiudad:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+button {
+    background: #ffffff;
+    color: #1e3c72;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+button:disabled {
+    background: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.resultado {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: aparecer 0.5s ease;
+    display: none;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.resultado.visible {
+    display: block;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.resultado .ciudad {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.resultado .pais {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.resultado .icono-clima {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    display: block;
+}
+
+.resultado .temperatura {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.resultado .descripcion {
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.resultado .detalles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.resultado .detalle {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.resultado .detalle .etiqueta {
+    font-size: 0.85rem;
+    color: #cccccc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.resultado .detalle .valor {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+#estado {
+    text-align: center;
+    margin-top: 20px;
+    color: #e0e0e0;
+    font-style: italic;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #cccccc;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 1.8rem; }
+    #inputCiudad { width: 100%; }
+    .resultado .temperatura { font-size: 2.5rem; }
+    .banner { max-width: 100%; }
+}
+
+.btn-ubicacion {
+    display: block;
+    margin: 0 auto 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-ubicacion:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+.pronostico {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+    max-width: 700px;
+    margin: 30px auto 0;
+}
+
+.pronostico h3 {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.dia-pronostico {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 15px 10px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.dia-pronostico:hover {
+    transform: translateY(-5px);
+}
+
+.dia-pronostico .dia {
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+.dia-pronostico img {
+    width: 60px;
+    height: 60px;
+}
+
+.dia-pronostico .temp-dia {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.dia-pronostico .desc-dia {
+    font-size: 0.8rem;
+    color: #ccc;
+    text-transform: capitalize;
+}
+.historial {
+    margin: 25px auto 0;
+    max-width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-historial {
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    font-style: italic;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.btn-historial {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-historial:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.btn-tema {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    font-size: 1.4rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: inherit;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-tema:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: rgba(255, 255, 255, 0.35);
+}
+
+body.claro {
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #1e3c72;
+}
+
+body.claro header h1 {
+    color: #1e3c72;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+body.claro header p,
+body.claro #estado,
+body.claro footer,
+body.claro .titulo-historial {
+    color: #4a5568;
+}
+
+body.claro .resultado {
+    background: rgba(30, 60, 114, 0.08);
+    color: #1e3c72;
+}
+
+body.claro .resultado .pais,
+body.claro .resultado .detalle .etiqueta {
+    color: #4a5568;
+}
+
+body.claro .resultado .detalle {
+    background: rgba(30, 60, 114, 0.06);
+}
+
+body.claro #inputCiudad {
+    background: rgba(30, 60, 114, 0.1);
+    color: #1e3c72;
+    border-color: #1e3c72;
+}
+
+body.claro #inputCiudad::placeholder {
+    color: #666;
+}
+
+body.claro button {
+    background: #1e3c72;
+    color: #ffffff;
+}
+
+body.claro .btn-historial {
+    background: rgba(30, 60, 114, 0.1);
+    color: #1e3c72;
+    border-color: #1e3c72;
+}
+
+body.claro .btn-ubicacion {
+    color: #1e3c72;
+    border-color: #1e3c72;
+    background: rgba(30, 60, 114, 0.1);
+}
+
+body.claro .dia-pronostico {
+    background: rgba(30, 60, 114, 0.08);
+    color: #1e3c72;
+}
+
+body.claro .dia-pronostico .desc-dia {
+    color: #666;
+}
+
+.btn-whatsapp {
+    margin-top: 25px;
+    background: #25D366;
+    color: #ffffff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebe5b;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+}
